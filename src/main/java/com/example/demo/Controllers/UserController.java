@@ -54,4 +54,16 @@ public class UserController {
 		return userauthrepo.findAll();
 	}
 	
+	
+	@PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String gisterUser(@RequestBody Map<String,String> data)
+	{
+		String username = data.get("username");
+		String password = data.get("password");
+		String location = data.get("location");
+		long phoneNumber = Long.parseLong(data.get("phonenumber"));
+		userauthrepo.save(new UserAuthentication(username, password, location, phoneNumber));
+		
+		return "success";
+	}
 }

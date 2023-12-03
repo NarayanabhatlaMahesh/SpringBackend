@@ -11,6 +11,13 @@ public class UserAuthentication {
 	String password;
 	String location;
 	Long phonenumber;
+	public UserAuthentication(String username, String password, String location, Long phonenumber) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.location = location;
+		this.phonenumber = phonenumber;
+	}
 	public String getUsername() {
 		return username;
 	}
