@@ -1,5 +1,6 @@
 package com.example.demo.Controllers;
 
+import java.util.HashMap;
 import java.util.List;
 //import java.io.IOException;
 import java.util.Map;
@@ -33,30 +34,39 @@ public class UserController {
 	public UserAuthenticationRepo userauthrepo;
 
 	@GetMapping(path = "/")
-	public String Getlogin()
+	public Map<String,String> Getlogin()
 	{
-		return "redirect:login";
+		Map<String, String> op = new HashMap<String, String>() ;
+		op.put("message", "yet to login");
+		return op;
 	}
 	
 	@PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String Postlogin(@RequestBody Map<String, String> data)
+	public Map<String, String> Postlogin(@RequestBody Map<String, String> data)
 	{
 		List<UserAuthentication> val = userauthrepo.findByUsernameAndPassword(data.get("username"),data.get("password"));
-		val.get(0).display();
-		if (val.size()>0)
-		return "success";
-		else return "nope";
+		
+		Map<String,String> op = new HashMap<String, String>();
+		
+		if (val.size()>0) {
+			val.get(0).display();
+			op.put("message", "success");}
+		else op.put("message", "nope");
+		return op;
+//		else return Map<'message','nope>';
 	}
 	
 	@GetMapping(path = "/userinfo")
 	public @ResponseBody Iterable<UserAuthentication> getUserList()
 	{
+		Iterable<UserAuthentication> info= userauthrepo.findAll();
+		info.iterator();
 		return userauthrepo.findAll();
 	}
 	
 	
 	@PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String reisterUser(@RequestBody Map<String,String> data)
+	public Map<String,String> reisterUser(@RequestBody Map<String,String> data)
 	{
 		String username = data.get("username");
 		String password = data.get("password");
@@ -66,7 +76,8 @@ public class UserController {
 		UserAuthentication ua = new UserAuthentication(username, password, location, phoneNumber);
 		System.out.println(ua);
 		userauthrepo.save(ua);
-		
-		return "success";
+		Map<String,String> op = new HashMap<String, String>();
+		op.put("Message", "success");
+		return op;
 	}
 }

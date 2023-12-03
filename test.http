@@ -2,16 +2,20 @@
 # content-type: application/json
 
 # {
-#     "username": "mahesh",
-#     "password": "mypassword",
+#     "username": "olusername",
+#     "password": "myolpassword",
 #     "location": "hyderabad",
 #     "phonenumber" : 1234567892
 # }
 
-POST http://localhost:8080 HTTP/1.1
-content-type : application/json
+# POST http://localhost:8080 HTTP/1.1
+# content-type : application/json
 
-{
-    "username": "mahesh",
-    "password": "mypassword"
-}
+# {
+#     "username": "mahsh",
+#     "password": "mypassword"
+# }
+
+# GET http://localhost:8080/userinfo HTTP/1.1
+
+# GET http://localhost:8080 HTTP/1.1
