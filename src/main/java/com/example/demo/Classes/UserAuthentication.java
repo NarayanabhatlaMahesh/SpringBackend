@@ -1,6 +1,10 @@
 package com.example.demo.Classes;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
@@ -11,6 +15,15 @@ public class UserAuthentication {
 	String password;
 	String location;
 	Long phonenumber;
+	
+	public void display()
+	{
+		System.out.println(username+" "+password+" "+location+" "+phonenumber);
+	}
+	
+	public UserAuthentication() {
+		super();
+	}
 	public UserAuthentication(String username, String password, String location, Long phonenumber) {
 		super();
 		this.username = username;
